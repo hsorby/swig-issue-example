@@ -6,19 +6,22 @@
 
 %shared_ptr(Baz)
 
-%newobject Baz::createShared;
-
-%ignore Baz::create;
+%ignore Baz::createShared;
 
 %{
 #include "baz.h"
+
+Baz *createRawFromNoDeleteShared() {
+    return std::shared_ptr<Baz>( new Baz {}, [](Baz *) {}/*No-Op Deleter*/).get();
+}
+
 %}
 
 %include "baz.h"
 
 %extend Baz {
-  Baz() { return Baz::createShared(); }
-  // Alternates
-  // Baz() { return Baz::create(); }
-  // Baz() { return Baz::createShared().get(); }
+   Baz()
+   {
+       return createRawFromNoDeleteShared();
+   }
 };
