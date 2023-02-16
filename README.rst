@@ -16,3 +16,20 @@ The Foo and Bar classes work as expected, the :code:`%extend Bar` macro (in :cod
 The current implementation of the Baz class does not work as intended.
 
 There is also a test python script (:code:`test_script.py`) that makes use of :code:`Baz.create()`, which is not the desired process for creating a Baz object in Python.
+
+Usage
+-----
+
+To use this repository on macOS the following instructions executed in a terminal will retrieve, configure, build, and test the example.
+Similar commands can be performed on other OSes the actual translation is left to the reader::
+
+ git clone https://github.com/hsorby/swig-issue-example
+ cd swig-issue-example
+ mkdir build
+ cd build
+ cmake -DCMAKE_BUILD_TYPE=Release ../
+ make
+ python ../test_script.py
+
+I recommend using a Python virtual envirnment to build and test this example with.
+Appropriate build tools are requried to perform these tasks, I assume that the required tools are already in place.
