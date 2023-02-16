@@ -2,7 +2,7 @@
 
 #define EXAMPLES_EXPORT
 
-%newobject Bar::create;
+// %newobject Bar::create;
 
 %ignore Bar::create;
 

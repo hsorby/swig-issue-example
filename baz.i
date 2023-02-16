@@ -6,7 +6,9 @@
 
 %shared_ptr(Baz)
 
-%newobject Baz::create;
+%newobject Baz::createShared;
+
+%ignore Baz::create;
 
 %{
 #include "baz.h"
@@ -15,8 +17,8 @@
 %include "baz.h"
 
 %extend Baz {
-  Baz() { return Baz::create(); }
+  Baz() { return Baz::createShared(); }
   // Alternates
-  // Baz() { return Baz::create().get(); }
-  // Baz() { return static_cast<Baz *>(Baz::create().get()); }
+  // Baz() { return Baz::create(); }
+  // Baz() { return Baz::createShared().get(); }
 };
