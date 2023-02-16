@@ -15,5 +15,8 @@
 %include "baz.h"
 
 %extend Baz {
-  std::shared_ptr<Baz> Baz() { return Baz::create(); }
+  Baz() { return Baz::create(); }
+  // Alternates
+  // Baz() { return Baz::create().get(); }
+  // Baz() { return static_cast<Baz *>(Baz::create().get()); }
 };
