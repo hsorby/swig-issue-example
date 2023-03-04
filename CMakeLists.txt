@@ -18,6 +18,7 @@ set(EXAMPLES_EXPORTDEFINITIONS_H ${CMAKE_CURRENT_BINARY_DIR}/examplesexportdefin
 
 add_library(examples foo.cpp foo.h bar.cpp bar.h baz.cpp baz.h ${EXAMPLES_EXPORTDEFINITIONS_H})
 target_include_directories(examples PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
+target_compile_options(examples PRIVATE -Wall -W)
 set_target_properties(examples PROPERTIES
   CXX_VISIBILITY_PRESET hidden
   VISIBILITY_INLINES_HIDDEN 1
@@ -48,6 +49,7 @@ foreach(_SRC ${INTERFACE_SRCS})
 
   target_link_libraries(${MODULE_TARGET} PRIVATE examples Python::Python)
   target_include_directories(${MODULE_TARGET} PRIVATE ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
+  target_compile_options(${MODULE_TARGET} PRIVATE -Wall -W -Wno-unused-parameter)
   set_target_properties(${MODULE_TARGET} PROPERTIES
     CXX_VISIBILITY_PRESET hidden
     VISIBILITY_INLINES_HIDDEN 1

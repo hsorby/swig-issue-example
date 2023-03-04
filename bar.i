@@ -2,8 +2,6 @@
 
 #define EXAMPLES_EXPORT
 
-// %newobject Bar::create;
-
 %ignore Bar::create;
 
 %{
