@@ -1,33 +1,33 @@
-%module(package="bigbar") baz
+%module(package="bigbar") bazza
 
 #define EXAMPLES_EXPORT
 
 %include <std_shared_ptr.i>
 
-%shared_ptr(Baz)
+%shared_ptr(Bazza)
 
-%ignore Baz::createShared;
+%ignore Bazza::createShared;
 %ignore createRaw;
 
 %{
-#include "baz.h"
+#include "bazza.h"
 %}
 
 
-%typemap(out) Baz *Baz() {
+%typemap(out) Bazza *Bazza() {
   /*
   Here we take the returned value from the Constructor for this object and cast it
   to the pointer that it actually is.  Once that is done we can set the required resultobj.
   */
-  std::shared_ptr<  Baz > *smartresult = reinterpret_cast<std::shared_ptr<  Baz > *>(result);
-  %set_output(SWIG_NewPointerObj(%as_voidptr(smartresult), $descriptor(std::shared_ptr< Baz > *), SWIG_POINTER_OWN));
+  std::shared_ptr<  Bazza > *smartresult = reinterpret_cast<std::shared_ptr<  Bazza > *>(result);
+  %set_output(SWIG_NewPointerObj(%as_voidptr(smartresult), $descriptor(std::shared_ptr< Bazza > *), SWIG_POINTER_OWN));
   printf("use count: %ld\n", smartresult->use_count());
 }
 
-%include "baz.h"
+%include "bazza.h"
 
-%extend Baz {
-    Baz() {
+%extend Bazza {
+    Bazza() {
         /*
         Provide a fake Constructor for the class and return a shared pointer
         as an actual class pointer because that is what we have to return from
@@ -35,13 +35,13 @@
         only used in one place so there we know it is actually a pointer
         to a shared pointer and cast it back to its proper form then.
         */
-        auto ptr = new std::shared_ptr<  Baz >(Baz::createShared());
-        return reinterpret_cast<Baz *>(ptr);
+        auto ptr = new std::shared_ptr<  Bazza >(Bazza::createShared());
+        return reinterpret_cast<Bazza *>(ptr);
     }
 }
 
-%extend Baz {
-    Baz(int x) {
+%extend Bazza {
+    Bazza(int x) {
         /*
         Provide a fake Constructor for the class and return a shared pointer
         as an actual class pointer because that is what we have to return from
@@ -49,7 +49,7 @@
         only used in one place so there we know it is actually a pointer
         to a shared pointer and cast it back to its proper form then.
         */
-        auto ptr = new std::shared_ptr<  Baz >(Baz::createShared(x));
-        return reinterpret_cast<Baz *>(ptr);
+        auto ptr = new std::shared_ptr<  Bazza >(Bazza::createShared(x));
+        return reinterpret_cast<Bazza *>(ptr);
     }
 }
