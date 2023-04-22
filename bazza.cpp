@@ -1,41 +1,43 @@
 #include "bazza.h"
 
-class Bazza::BazzaImpl
+#include "base_p.h"
+
+class Bazza::BazzaImpl: public Base::BaseImpl
 {
 public:
     int mX;
 };
 
 Bazza::Bazza()
-    : mPimpl(new Bazza::BazzaImpl()){
+    : Base(new Bazza::BazzaImpl()){
 }
 
 Bazza::Bazza(int x)
-    : mPimpl(new Bazza::BazzaImpl()){
-    mPimpl->mX = x;
+    : Base(new Bazza::BazzaImpl()){
+    pFunc()->mX = x;
 }
 
 Bazza::~Bazza() {
-    delete mPimpl;
+    delete pFunc();
     printf("deleted\n");
 }
 
-//Bazza::BazzaImpl *Bazza::pFunc()
-//{
-//    return reinterpret_cast<Bazza::BazzaImpl *>(Entity::pFunc());
-//}
+Bazza::BazzaImpl *Bazza::pFunc()
+{
+    return reinterpret_cast<Bazza::BazzaImpl *>(Base::pFunc());
+}
 
-//const Bazza::BazzaImpl *Bazza::pFunc() const
-//{
-//    return reinterpret_cast<Bazza::BazzaImpl const *>(Entity::pFunc());
-//}
+const Bazza::BazzaImpl *Bazza::pFunc() const
+{
+    return reinterpret_cast<Bazza::BazzaImpl const *>(Base::pFunc());
+}
 
 void Bazza::setX(int x) {
-  mPimpl->mX = x;
+  pFunc()->mX = x;
 }
 
 int Bazza::x() const {
-  return mPimpl->mX;
+  return pFunc()->mX;
 }
 
 int Bazza::add(int x, int y) {

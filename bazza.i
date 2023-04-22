@@ -6,8 +6,9 @@
 
 %shared_ptr(Bazza)
 
+%import "base.i"
+
 %ignore Bazza::createShared;
-%ignore createRaw;
 
 %{
 #include "bazza.h"

@@ -16,7 +16,7 @@ include(${SWIG_USE_FILE})
 
 set(EXAMPLES_EXPORTDEFINITIONS_H ${CMAKE_CURRENT_BINARY_DIR}/examplesexportdefinitions.h)
 
-add_library(examples foo.cpp foo.h bar.cpp bar.h baz.cpp baz.h bazza.cpp bazza.h ${EXAMPLES_EXPORTDEFINITIONS_H})
+add_library(examples foo.cpp foo.h bar.cpp bar.h baz.cpp baz.h bazza.cpp bazza.h base.cpp base.h base_p.h ${EXAMPLES_EXPORTDEFINITIONS_H})
 target_include_directories(examples PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
 target_compile_options(examples PRIVATE -Wall -W)
 set_target_properties(examples PROPERTIES
@@ -33,6 +33,7 @@ set(INTERFACE_SRCS
   ${CMAKE_CURRENT_SOURCE_DIR}/foo.i
   ${CMAKE_CURRENT_SOURCE_DIR}/bar.i
   ${CMAKE_CURRENT_SOURCE_DIR}/baz.i
+  ${CMAKE_CURRENT_SOURCE_DIR}/base.i
   ${CMAKE_CURRENT_SOURCE_DIR}/bazza.i
 )
 
